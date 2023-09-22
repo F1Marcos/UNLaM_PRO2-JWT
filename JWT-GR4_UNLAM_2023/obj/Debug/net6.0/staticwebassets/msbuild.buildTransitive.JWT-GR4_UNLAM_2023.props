@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\JWT-GR4_UNLAM_2023.props" />
+</Project>
