@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jwt.Controllers
 {
+    // RUTA privada, solo usuarios autenticados.
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
 
         [HttpGet]
-        [Authorize]
+        [Authorize] // -------->>>> Seteamos el controlador para que autentique via token.
         public IActionResult Get()
         {
             var listProduct = ProductConstants.Products;

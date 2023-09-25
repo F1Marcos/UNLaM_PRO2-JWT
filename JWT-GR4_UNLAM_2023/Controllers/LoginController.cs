@@ -60,7 +60,7 @@ namespace Jwt.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256); // Algoritmo de encriptacion Sha256
 
-            // Crear los claims (reclamaciones):
+            // Crear los claims (reclamaciones), estos son los parametros que se insertan en el PAYLOAD del token:
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
@@ -71,7 +71,7 @@ namespace Jwt.Controllers
             };
 
 
-            // Finalmente creamos el token:
+            // Finalmente configuramos el token:
 
             var token = new JwtSecurityToken(
                 _config["Jwt:Issuer"],
@@ -80,7 +80,7 @@ namespace Jwt.Controllers
                 expires: DateTime.Now.AddMinutes(60), // Expiracion del token.
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token); // Creamos y devolvemos el token.
         }
     }
 }

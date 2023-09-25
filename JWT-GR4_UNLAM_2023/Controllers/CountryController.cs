@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jwt.Controllers
 {
+    // RUTA PUBLICA, no se autentica.
     [Route("api/[controller]")]
     [ApiController]
     public class CountryController : ControllerBase

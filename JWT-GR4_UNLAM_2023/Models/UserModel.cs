@@ -1,5 +1,6 @@
 ﻿namespace Jwt.Models
 {
+    // Clase tipo DTO (data transfers object) para acceder a los datos en la carpeta Constants.
     public class UserModel
     {
         public string Username { get; set; }

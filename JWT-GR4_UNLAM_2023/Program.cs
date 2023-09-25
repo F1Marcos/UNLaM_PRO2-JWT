@@ -8,11 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Agregamos en el contendor de servicios (middleware) la autenticacion:
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters()
+    options.TokenValidationParameters = new TokenValidationParameters() // Opciones de validacion que se configuraron en "appsettings.json".
     {
         ValidateIssuer = true,
         ValidateAudience = true,
@@ -38,7 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
+app.UseAuthentication();    // --------> JWT
 app.UseAuthorization();
 
 app.MapControllers();
