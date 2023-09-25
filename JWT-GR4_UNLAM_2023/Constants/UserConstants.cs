@@ -4,6 +4,7 @@ namespace Jwt.Constants
 {
     public class UserConstants
     {
+        // No usamos base de datos, en su lugar hardcodeamos constantes de usuario.
         public static List<UserModel> Users = new List<UserModel>()
         {
             new UserModel() { Username = "mquispe", Password = "admin123", Rol = "Administrador", EmailAddress = "mquispe@gmail.com", FirstName = "Juan", LastName = "Perez"},

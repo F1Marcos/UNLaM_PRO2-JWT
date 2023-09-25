@@ -13,10 +13,12 @@ namespace Jwt.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        // Variable de configuracion para JWT: "_config"
         private readonly IConfiguration _config;
 
         public LoginController(IConfiguration config)
         {
+            // Con este metodo accedemos a la configuracion de JWT en "appsettings.json" y la importamos localmente.
             _config = config;
         }
 
@@ -27,7 +29,7 @@ namespace Jwt.Controllers
 
             if(user != null)
             {
-                // Crear el token
+                // Si el usuario existe entonces crear el token:
 
                 var token = Generate(user);
 
@@ -39,6 +41,8 @@ namespace Jwt.Controllers
 
         private UserModel Authenticate(LoginUser userLogin)
         {
+            // Buscamos al usuario recibido en las constantes de la carpeta "Constants/UserConstants.cs".
+            // Con FirsOrDefault busca elemento por elemnto dentro de la lista "Users" y si hay considencia se carga la variable.
             var currentUser = UserConstants.Users.FirstOrDefault(user => user.Username.ToLower() == userLogin.UserName.ToLower()
                    && user.Password == userLogin.Password);
 
@@ -52,10 +56,11 @@ namespace Jwt.Controllers
 
         private string Generate(UserModel user)
         {
+            // En este pungo tenemos que tener instalado los paquetes de JWT y importamos:
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256); // Algoritmo de encriptacion Sha256
 
-            // Crear los claims
+            // Crear los claims (reclamaciones):
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
@@ -66,13 +71,13 @@ namespace Jwt.Controllers
             };
 
 
-            // Crear el token
+            // Finalmente creamos el token:
 
             var token = new JwtSecurityToken(
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(60), // Expiracion del token.
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
