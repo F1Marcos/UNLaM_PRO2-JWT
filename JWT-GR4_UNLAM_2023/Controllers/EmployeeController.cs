@@ -15,7 +15,8 @@ namespace Jwt.Controllers
         [Authorize(Roles = ("Administrador"))]  // -------->>>> Seteamos el controlador para que autentique via token.
         public IActionResult Get()
         {
-            var listEmployee = EmployeeConstants.Employees;
+            // var listEmployee = EmployeeConstants.Employees;
+            var listEmployee = UserConstants.Users;
 
             return Ok(listEmployee);
         }

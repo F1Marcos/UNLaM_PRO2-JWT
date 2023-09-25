@@ -10,11 +10,11 @@
         "projectUniqueName": "/home/mquispe/Downloads/UNLAM/Programacion_2/TP-JWT/JWT-GR4_UNLAM_2023/JWT-GR4_UNLAM_2023/JWT-GR4_UNLAM_2023.csproj",
         "projectName": "JWT-GR4_UNLAM_2023",
         "projectPath": "/home/mquispe/Downloads/UNLAM/Programacion_2/TP-JWT/JWT-GR4_UNLAM_2023/JWT-GR4_UNLAM_2023/JWT-GR4_UNLAM_2023.csproj",
-        "packagesPath": "/home/mquispe/.nuget/packages/",
+        "packagesPath": "/root/.nuget/packages/",
         "outputPath": "/home/mquispe/Downloads/UNLAM/Programacion_2/TP-JWT/JWT-GR4_UNLAM_2023/JWT-GR4_UNLAM_2023/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mquispe/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

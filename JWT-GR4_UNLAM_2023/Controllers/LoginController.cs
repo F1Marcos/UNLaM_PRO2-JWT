@@ -39,6 +39,16 @@ namespace Jwt.Controllers
             return NotFound("Usuario no encontrado");
         }
 
+        /*
+        // Metodo para probar que el backend puede desencriptar el token y acceder a los claims:
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var currentUser = GetCurrentUser();
+            return Ok($"Hola {currentUser.FirstName}, tu tiene rol es de {currentUser.Rol}.");
+        }
+        */
+        
         private UserModel Authenticate(LoginUser userLogin)
         {
             // Buscamos al usuario recibido en las constantes de la carpeta "Constants/UserConstants.cs".
@@ -82,5 +92,25 @@ namespace Jwt.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token); // Creamos y devolvemos el token.
         }
+
+        /*
+        private UserModel GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var userClamis = identity.Claims;
+                return new UserModel
+                {
+                    Username = userClamis.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
+                    EmailAddress = userClamis.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value,
+                    FirstName = userClamis.FirstOrDefault(o => o.Type == ClaimTypes.GivenName)?.Value,
+                    LastName = userClamis.FirstOrDefault(o => o.Type == ClaimTypes.Surname)?.Value,
+                    Rol = userClamis.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value,
+                };
+            }
+            return null;
+        }
+        */
     }
 }
